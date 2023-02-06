@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.Random;
 
 public class GamePanel extends JPanel implements ActionListener{
-
+    Button button = new Button();
     static final int SCREEN_WIDTH = 800;
     static final int SCREEN_HEIGHT = 800;
     static final int UNIT_SIZE = 50;
@@ -27,6 +27,7 @@ public class GamePanel extends JPanel implements ActionListener{
         this.setBackground(Color.black);
         this.setFocusable(true);
         this.addKeyListener(new MyKeyAdapter());
+
         startGame();
     }
     public void startGame() {
@@ -126,14 +127,32 @@ public class GamePanel extends JPanel implements ActionListener{
         FontMetrics metrics1 = getFontMetrics(g.getFont());
         g.drawString("Score: "+applesEaten, (SCREEN_WIDTH - metrics1.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
         //Game Over text
-        g.setColor(Color.red);
+        g.setColor(Color.YELLOW);
         g.setFont( new Font("Monospaced",Font.BOLD, 75));
         FontMetrics metrics2 = getFontMetrics(g.getFont());
         g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
+        playAgain();
+
+
     }
+
+    private void playAgain() {
+        //Button To Play Again
+        this.add(button);
+        button.setBounds(300, 500, 200, 50);
+        button.setLabel("PLAY AGAIN");
+        button.setFont(new Font("Times New Roman", Font.BOLD, 30));
+        button.setBackground(Color.RED);
+        button.setForeground(Color.WHITE);
+        button.addActionListener(this);
+        button.setFocusable(false);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource()==button) {
+            new GameFrame();
+        }
         if(running) {
             move();
             checkApple();
@@ -141,6 +160,7 @@ public class GamePanel extends JPanel implements ActionListener{
         }
         repaint();
     }
+
 
     public class MyKeyAdapter extends KeyAdapter{
         @Override
