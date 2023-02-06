@@ -4,21 +4,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Snake extends JFrame implements ActionListener {
+public class StartTitle extends JFrame implements ActionListener {
     ImageIcon snakeIcon = new ImageIcon("C:\\Users\\vep_24cmseh\\IdeaProjects\\Snake Game\\Snake Icon.png");
     ImageIcon snakeTitle = new ImageIcon("C:\\Users\\vep_24cmseh\\IdeaProjects\\Snake Game\\SnakeTitleGUI.png");
     JLabel label = new JLabel();
     JButton button = new JButton();
-    JPanel panel = new JPanel();
-    JProgressBar bar = new JProgressBar();
     Border border1 = BorderFactory.createLineBorder(Color.green,4);
     Border border2 = BorderFactory.createLineBorder(Color.CYAN, 3);
-    Snake(){
+
+
+    StartTitle(){
         playButton();
         titleScreenLabels();
         windowFrame();
     }
-
 
 
     private void windowFrame() {
@@ -30,12 +29,11 @@ public class Snake extends JFrame implements ActionListener {
         this.getContentPane().setBackground(Color.BLACK);
         this.setIconImage(snakeIcon.getImage());
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
         this.add(label);
         this.add(button);
-        this.add(panel);
-        this.add(bar);
-    }
 
+    }
     private void titleScreenLabels() {
         label.setText("Developed By: Vernon Pitney");
         label.setIcon(snakeTitle);
@@ -63,25 +61,13 @@ public class Snake extends JFrame implements ActionListener {
         button.setFocusable(false);
     }
 
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==button) {
-            label.setVisible(false);
-            button.setVisible(false);
-
-
-            bar.setBounds(380, 360, 20 , 20);
-            bar.setBackground(Color.green);
-            bar.setFocusable(false);
-
-
-            panel.setBounds(380, 100, 20 , 20);
-            panel.setBackground(Color.RED);
-
-
-
-
-
+            this.dispose();
+            new GameFrame();
         }
     }
 }

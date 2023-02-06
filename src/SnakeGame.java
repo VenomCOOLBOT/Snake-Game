@@ -1,6 +1,5 @@
-
-public class Main {
+public class SnakeGame {
     public static void main(String[] args) {
-        new Snake();
+        new StartTitle();
     }
 }
